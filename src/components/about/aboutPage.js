@@ -31,7 +31,7 @@ var About = React.createClass({
 						<li>Node</li>
 						<li>Gulp</li>
 						<li>Browserify</li>
-						<li>Bootstrap</li>
+						<li>Bootstrap change</li>
 						
 					</ul>
 				</p>
