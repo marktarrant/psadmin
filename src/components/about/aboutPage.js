@@ -32,7 +32,7 @@ var About = React.createClass({
 						<li>Gulp</li>
 						<li>Browserify</li>
 						<li>Bootstrap</li>
-						<li>test1</li>
+					
 					</ul>
 				</p>
 			</div>
