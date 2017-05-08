@@ -46270,7 +46270,7 @@ var AuthorActions = {
 
 module.exports = AuthorActions;
 
-},{"../api/authorApi":209,"../constants/actionTypes":221,"../dispatcher/appDispatcher":222}],208:[function(require,module,exports){
+},{"../api/authorApi":209,"../constants/actionTypes":224,"../dispatcher/appDispatcher":225}],208:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
@@ -46290,7 +46290,7 @@ var InitializeActions = {
 
 module.exports = InitializeActions;
 
-},{"../api/authorApi":209,"../constants/actionTypes":221,"../dispatcher/appDispatcher":222}],209:[function(require,module,exports){
+},{"../api/authorApi":209,"../constants/actionTypes":224,"../dispatcher/appDispatcher":225}],209:[function(require,module,exports){
 "use strict";
 
 //This file is mocking a web API by hitting hard coded data.
@@ -46367,6 +46367,105 @@ module.exports = {
 },{}],211:[function(require,module,exports){
 "use strict";
 
+//This file is mocking a web API by hitting hard coded data.
+var courses = require('./courseData').courses;
+var _ = require('lodash');
+
+//This would be performed on the server in a real app. Just stubbing in.
+var _generateId = function(course) {
+	return course.title.replace(' ', '-');
+};
+
+var _clone = function(item) {
+	return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
+};
+
+var CourseApi = {
+	getAllCourses: function() {
+		return _clone(courses);	
+	},
+
+	getCoursesById: function(id) {
+		var course = _.find(courses, {id: id});
+		return _clone(course);
+	},
+
+	saveCourse: function(course) {
+		console.log('Imagine saving course via AJAX call...');
+
+		if (course.id) {
+			var existingCourseIndex = _.indexOf(courses, _.find(courses, {id: course.id})); 
+			courses.splice(existingCourseIndex, 1, course); 
+		} else {
+			//just simulating creation here. This data 
+			//would be generated on the server in a real app. 
+			course.id = _generateId(course);
+			courses.push(_clone(course));
+		}
+		return course;
+	},
+
+	deleteCourse: function(id) {
+		console.log('Imagine deleting course with id of ' + id + ' via AJAX call...');
+		_.remove(courses, { id: id});
+	}
+};
+
+module.exports = CourseApi;
+
+},{"./courseData":212,"lodash":8}],212:[function(require,module,exports){
+module.exports = {
+	courses: [
+		{  
+			id: "clean-code",
+			title: "Clean Code: Writing Code for Humans",
+			watchHref: "http://www.pluralsight.com/courses/writing-clean-code-humans",
+			author: {  
+				id: "cory-house",
+				name: "Cory House"
+			},
+			length: "3:10",
+			category: "Software Practices"
+		},
+		{  
+			id: "architecture",
+			title: "Architecting Applications for the Real World",
+			watchHref: "http://www.pluralsight.com/courses/architecting-applications-dotnet",
+			author: {  
+				id: "cory-house",
+				name: "Cory House"
+			},
+			length: "2:52",
+			category: "Software Architecture"
+		},
+		{  
+			id: "career-reboot-for-developer-mind",
+			title: "Becoming an Outlier: Reprogramming the Developer Mind",
+			watchHref: "http://www.pluralsight.com/courses/career-reboot-for-developer-mind",
+			author: {  
+				id: "cory-house",
+				name: "Cory House"
+			},
+			length: "2:30",
+			category: "Career"
+		},
+		{  
+			id: "web-components-shadow-dom",
+			title: "Web Component Fundamentals",
+			watchHref: "http://www.pluralsight.com/courses/web-components-shadow-dom",
+			author: {  
+				id: "cory-house",
+				name: "Cory House"
+			},
+			length: "5:10",
+			category: "HTML5"
+		}
+	]
+};
+
+},{}],213:[function(require,module,exports){
+"use strict";
+
 var React = require('react');
 
 var About = React.createClass({displayName: "About",
@@ -46395,7 +46494,7 @@ var About = React.createClass({displayName: "About",
 
 module.exports = About;
 
-},{"react":205}],212:[function(require,module,exports){
+},{"react":205}],214:[function(require,module,exports){
 /*eslint-disable strict */ //Disabling check because we can't run strict mode. Need global vars.
 
 var React = require('react');
@@ -46418,7 +46517,7 @@ var App = React.createClass({displayName: "App",
 
 module.exports = App;
 
-},{"./common/header":217,"jquery":7,"react":205,"react-router":35}],213:[function(require,module,exports){
+},{"./common/header":219,"jquery":7,"react":205,"react-router":35}],215:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46458,7 +46557,7 @@ var AuthorForm = React.createClass({displayName: "AuthorForm",
 
 module.exports = AuthorForm;
 
-},{"../common/textInput":218,"react":205}],214:[function(require,module,exports){
+},{"../common/textInput":220,"react":205}],216:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46508,7 +46607,7 @@ var AuthorList = React.createClass({displayName: "AuthorList",
 
 module.exports = AuthorList;
 
-},{"../../actions/authorActions":207,"react":205,"react-router":35,"toastr":206}],215:[function(require,module,exports){
+},{"../../actions/authorActions":207,"react":205,"react-router":35,"toastr":206}],217:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46551,7 +46650,7 @@ var AuthorPage = React.createClass({displayName: "AuthorPage",
 
 module.exports = AuthorPage;
 
-},{"../../actions/authorActions":207,"../../stores/authorStore":225,"./authorList":214,"react":205,"react-router":35}],216:[function(require,module,exports){
+},{"../../actions/authorActions":207,"../../stores/authorStore":228,"./authorList":216,"react":205,"react-router":35}],218:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46646,7 +46745,7 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
 
 module.exports = ManageAuthorPage;
 
-},{"../../actions/authorActions":207,"../../stores/authorStore":225,"./authorForm":213,"react":205,"react-router":35,"toastr":206}],217:[function(require,module,exports){
+},{"../../actions/authorActions":207,"../../stores/authorStore":228,"./authorForm":215,"react":205,"react-router":35,"toastr":206}],219:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46664,7 +46763,8 @@ var Header = React.createClass({displayName: "Header",
               React.createElement("ul", {className: "nav navbar-nav"}, 
                 React.createElement("li", null, React.createElement(Link, {to: "app"}, "Home")), 
                 React.createElement("li", null, React.createElement(Link, {to: "authors"}, "Authors")), 
-                React.createElement("li", null, React.createElement(Link, {to: "about"}, "About"))
+                React.createElement("li", null, React.createElement(Link, {to: "about"}, "About")), 
+                React.createElement("li", null, React.createElement(Link, {to: "courses"}, "Courses"))
               )
           )
         )
@@ -46673,7 +46773,7 @@ var Header = React.createClass({displayName: "Header",
 });
 
 module.exports = Header;
-},{"react":205,"react-router":35}],218:[function(require,module,exports){
+},{"react":205,"react-router":35}],220:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46714,7 +46814,29 @@ var Input = React.createClass({displayName: "Input",
 
 module.exports = Input;
 
-},{"react":205}],219:[function(require,module,exports){
+},{"react":205}],221:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+var CourseApi = require('../../api/courseApi');
+var Router = require('react-router');
+
+var Courses = React.createClass({displayName: "Courses",
+	render: function() {
+		return (
+			React.createElement("div", null, 
+				React.createElement("h1", null, "Courses")
+			)
+
+		);
+
+	}
+
+});
+
+module.exports = Courses;
+
+},{"../../api/courseApi":211,"react":205,"react-router":35}],222:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46735,7 +46857,7 @@ var Home = React.createClass({displayName: "Home",
 
 module.exports = Home;
 
-},{"react":205,"react-router":35}],220:[function(require,module,exports){
+},{"react":205,"react-router":35}],223:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46755,7 +46877,7 @@ var NotFoundPage = React.createClass({displayName: "NotFoundPage",
 
 module.exports = NotFoundPage;
 
-},{"react":205,"react-router":35}],221:[function(require,module,exports){
+},{"react":205,"react-router":35}],224:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require('react/lib/keyMirror');
@@ -46768,7 +46890,7 @@ module.exports = keyMirror({
 	CREATE_COURSE: null
 });
 
-},{"react/lib/keyMirror":190}],222:[function(require,module,exports){
+},{"react/lib/keyMirror":190}],225:[function(require,module,exports){
 /*
  * Copyright (c) 2015, Facebook, Inc.
  * All rights reserved.
@@ -46786,7 +46908,7 @@ var Dispatcher = require('flux').Dispatcher;
 
 module.exports = new Dispatcher();
 
-},{"flux":4}],223:[function(require,module,exports){
+},{"flux":4}],226:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46799,7 +46921,7 @@ InitializeActions.initApp();
 Router.run(routes, function(Handler) {
 	React.render(React.createElement(Handler, null), document.getElementById('app'));
 });
-},{"./actions/initializeActions":208,"./routes":224,"react":205,"react-router":35}],224:[function(require,module,exports){
+},{"./actions/initializeActions":208,"./routes":227,"react":205,"react-router":35}],227:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46814,6 +46936,7 @@ var routes = (
   React.createElement(Route, {name: "app", path: "/", handler: require('./components/app')}, 
     React.createElement(DefaultRoute, {handler: require('./components/homePage')}), 
     React.createElement(Route, {name: "authors", handler: require('./components/authors/authorPage')}), 
+    React.createElement(Route, {name: "courses", handler: require('./components/courses/coursePage')}), 
     React.createElement(Route, {name: "addAuthor", path: "author", handler: require('./components/authors/manageAuthorPage')}), 
     React.createElement(Route, {name: "manageAuthor", path: "author/:id", handler: require('./components/authors/manageAuthorPage')}), 
     React.createElement(Route, {name: "about", handler: require('./components/about/aboutPage')}), 
@@ -46826,7 +46949,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/about/aboutPage":211,"./components/app":212,"./components/authors/authorPage":215,"./components/authors/manageAuthorPage":216,"./components/homePage":219,"./components/notFoundPage":220,"react":205,"react-router":35}],225:[function(require,module,exports){
+},{"./components/about/aboutPage":213,"./components/app":214,"./components/authors/authorPage":217,"./components/authors/manageAuthorPage":218,"./components/courses/coursePage":221,"./components/homePage":222,"./components/notFoundPage":223,"react":205,"react-router":35}],228:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
@@ -46889,4 +47012,4 @@ Dispatcher.register(function(action) {
 
 module.exports = AuthorStore;
 
-},{"../constants/actionTypes":221,"../dispatcher/appDispatcher":222,"events":2,"lodash":8,"object-assign":9}]},{},[223]);
+},{"../constants/actionTypes":224,"../dispatcher/appDispatcher":225,"events":2,"lodash":8,"object-assign":9}]},{},[226]);
