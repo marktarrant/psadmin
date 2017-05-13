@@ -46825,7 +46825,17 @@ var Courses = React.createClass({displayName: "Courses",
 	render: function() {
 		return (
 			React.createElement("div", null, 
-				React.createElement("h1", null, "Courses")
+				React.createElement("h1", null, "Courses"), 
+
+				React.createElement("table", {className: "table"}, 
+					React.createElement("thead", null, 
+						React.createElement("th", null, "ID"), 
+						React.createElement("th", null, "Name")
+					), 
+					React.createElement("tbody", null
+						
+					)
+				)
 			)
 
 		);
