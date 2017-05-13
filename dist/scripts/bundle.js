@@ -46822,7 +46822,26 @@ var CourseApi = require('../../api/courseApi');
 var Router = require('react-router');
 
 var Courses = React.createClass({displayName: "Courses",
+	getInitialState: function() {
+		return {
+			courses: []
+		};
+	},
+
+	componentWillMount: function() {
+		this.setState({ courses: CourseApi.getAllCourses() });
+	},
+
 	render: function() {
+		var createCourseRow = function(course) {
+			return (
+					React.createElement("tr", {key: course.id}, 
+						React.createElement("td", null, React.createElement("a", {href: "/#courses/" + course.id}, course.id)), 
+						React.createElement("td", null, course.title)
+					)
+				);
+		};
+
 		return (
 			React.createElement("div", null, 
 				React.createElement("h1", null, "Courses"), 
@@ -46832,8 +46851,8 @@ var Courses = React.createClass({displayName: "Courses",
 						React.createElement("th", null, "ID"), 
 						React.createElement("th", null, "Name")
 					), 
-					React.createElement("tbody", null
-						
+					React.createElement("tbody", null, 
+						this.state.courses.map(createCourseRow, this)
 					)
 				)
 			)
