@@ -1,12 +1,13 @@
 "use strict";
 
 var React = require('react');
+var CourseForm = require('./courseForm');
 
 var ManageAuthorPage = React.createClass({
 
 	render: function() {
 		return (
-			<h1>Manage Author</h1>
+			<CourseForm />
 		);
 	}
 });
