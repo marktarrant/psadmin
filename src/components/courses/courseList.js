@@ -14,6 +14,10 @@ var CourseList = React.createClass({
 					<tr key={course.id}>
 						<td><a href = {"/#courses/" + course.id}>{course.id}</a></td>
 						<td>{course.title}</td>
+						<td>{course.author.name}</td>
+						<td>{course.category}</td>
+						<td>{course.length}</td>
+						<td><a href={course.watchHref}>Watch</a></td>
 					</tr>
 				);
 		};
@@ -25,6 +29,11 @@ var CourseList = React.createClass({
 					<thead>
 						<th>ID</th>
 						<th>Name</th>
+						<th>Author</th>
+						<th>Category</th>
+						<th>Length</th>
+						<th>Watch</th>
+
 					</thead>
 					<tbody>
 						{this.props.courses.map(createCourseRow, this)}

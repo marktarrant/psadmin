@@ -46879,7 +46879,11 @@ var CourseList = React.createClass({displayName: "CourseList",
 			return (
 					React.createElement("tr", {key: course.id}, 
 						React.createElement("td", null, React.createElement("a", {href: "/#courses/" + course.id}, course.id)), 
-						React.createElement("td", null, course.title)
+						React.createElement("td", null, course.title), 
+						React.createElement("td", null, course.author.name), 
+						React.createElement("td", null, course.category), 
+						React.createElement("td", null, course.length), 
+						React.createElement("td", null, React.createElement("a", {href: course.watchHref}, "Watch"))
 					)
 				);
 		};
@@ -46890,7 +46894,12 @@ var CourseList = React.createClass({displayName: "CourseList",
 				React.createElement("table", {className: "table"}, 
 					React.createElement("thead", null, 
 						React.createElement("th", null, "ID"), 
-						React.createElement("th", null, "Name")
+						React.createElement("th", null, "Name"), 
+						React.createElement("th", null, "Author"), 
+						React.createElement("th", null, "Category"), 
+						React.createElement("th", null, "Length"), 
+						React.createElement("th", null, "Watch")
+
 					), 
 					React.createElement("tbody", null, 
 						this.props.courses.map(createCourseRow, this)
