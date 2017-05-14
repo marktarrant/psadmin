@@ -4,6 +4,9 @@ var React = require('react');
 var Router = require('react-router');
 
 var CourseList = React.createClass({
+	propTypes: {
+		courses: React.PropTypes.array.isRequired
+	},
 	
 	render: function() {
 		var createCourseRow = function(course) {

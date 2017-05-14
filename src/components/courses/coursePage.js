@@ -6,7 +6,7 @@ var Router = require('react-router');
 var CourseList = require('./courseList');
 
 
-var Courses = React.createClass({
+var CoursePage = React.createClass({
 	getInitialState: function() {
 		return {
 			courses: []
@@ -33,4 +33,4 @@ var Courses = React.createClass({
 
 });
 
-module.exports = Courses;
+module.exports = CoursePage;

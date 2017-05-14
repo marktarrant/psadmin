@@ -46821,6 +46821,9 @@ var React = require('react');
 var Router = require('react-router');
 
 var CourseList = React.createClass({displayName: "CourseList",
+	propTypes: {
+		courses: React.PropTypes.array.isRequired
+	},
 	
 	render: function() {
 		var createCourseRow = function(course) {
@@ -46863,7 +46866,7 @@ var Router = require('react-router');
 var CourseList = require('./courseList');
 
 
-var Courses = React.createClass({displayName: "Courses",
+var CoursePage = React.createClass({displayName: "CoursePage",
 	getInitialState: function() {
 		return {
 			courses: []
@@ -46890,7 +46893,7 @@ var Courses = React.createClass({displayName: "Courses",
 
 });
 
-module.exports = Courses;
+module.exports = CoursePage;
 
 },{"../../api/courseApi":211,"./courseList":221,"react":205,"react-router":35}],223:[function(require,module,exports){
 "use strict";
