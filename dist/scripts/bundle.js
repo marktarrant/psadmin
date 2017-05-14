@@ -46270,7 +46270,7 @@ var AuthorActions = {
 
 module.exports = AuthorActions;
 
-},{"../api/authorApi":209,"../constants/actionTypes":225,"../dispatcher/appDispatcher":226}],208:[function(require,module,exports){
+},{"../api/authorApi":209,"../constants/actionTypes":226,"../dispatcher/appDispatcher":227}],208:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
@@ -46290,7 +46290,7 @@ var InitializeActions = {
 
 module.exports = InitializeActions;
 
-},{"../api/authorApi":209,"../constants/actionTypes":225,"../dispatcher/appDispatcher":226}],209:[function(require,module,exports){
+},{"../api/authorApi":209,"../constants/actionTypes":226,"../dispatcher/appDispatcher":227}],209:[function(require,module,exports){
 "use strict";
 
 //This file is mocking a web API by hitting hard coded data.
@@ -46650,7 +46650,7 @@ var AuthorPage = React.createClass({displayName: "AuthorPage",
 
 module.exports = AuthorPage;
 
-},{"../../actions/authorActions":207,"../../stores/authorStore":229,"./authorList":216,"react":205,"react-router":35}],218:[function(require,module,exports){
+},{"../../actions/authorActions":207,"../../stores/authorStore":230,"./authorList":216,"react":205,"react-router":35}],218:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46745,7 +46745,7 @@ var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
 
 module.exports = ManageAuthorPage;
 
-},{"../../actions/authorActions":207,"../../stores/authorStore":229,"./authorForm":215,"react":205,"react-router":35,"toastr":206}],219:[function(require,module,exports){
+},{"../../actions/authorActions":207,"../../stores/authorStore":230,"./authorForm":215,"react":205,"react-router":35,"toastr":206}],219:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46864,6 +46864,7 @@ var React = require('react');
 var CourseApi = require('../../api/courseApi');
 var Router = require('react-router');
 var CourseList = require('./courseList');
+var Link = require('react-router').Link;
 
 
 var CoursePage = React.createClass({displayName: "CoursePage",
@@ -46884,6 +46885,7 @@ var CoursePage = React.createClass({displayName: "CoursePage",
 		return (
 			React.createElement("div", null, 
 				React.createElement("h1", null, "Courses"), 
+				React.createElement(Link, {to: "addCourse", className: "btn btn-default"}, "Add Course"), 
 				React.createElement(CourseList, {courses: this.state.courses})
 			)
 
@@ -46896,6 +46898,22 @@ var CoursePage = React.createClass({displayName: "CoursePage",
 module.exports = CoursePage;
 
 },{"../../api/courseApi":211,"./courseList":221,"react":205,"react-router":35}],223:[function(require,module,exports){
+"use strict";
+
+var React = require('react');
+
+var ManageAuthorPage = React.createClass({displayName: "ManageAuthorPage",
+
+	render: function() {
+		return (
+			React.createElement("h1", null, "Manage Author")
+		);
+	}
+});
+
+module.exports = ManageAuthorPage;
+
+},{"react":205}],224:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46916,7 +46934,7 @@ var Home = React.createClass({displayName: "Home",
 
 module.exports = Home;
 
-},{"react":205,"react-router":35}],224:[function(require,module,exports){
+},{"react":205,"react-router":35}],225:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46936,7 +46954,7 @@ var NotFoundPage = React.createClass({displayName: "NotFoundPage",
 
 module.exports = NotFoundPage;
 
-},{"react":205,"react-router":35}],225:[function(require,module,exports){
+},{"react":205,"react-router":35}],226:[function(require,module,exports){
 "use strict";
 
 var keyMirror = require('react/lib/keyMirror');
@@ -46949,7 +46967,7 @@ module.exports = keyMirror({
 	CREATE_COURSE: null
 });
 
-},{"react/lib/keyMirror":190}],226:[function(require,module,exports){
+},{"react/lib/keyMirror":190}],227:[function(require,module,exports){
 /*
  * Copyright (c) 2015, Facebook, Inc.
  * All rights reserved.
@@ -46967,7 +46985,7 @@ var Dispatcher = require('flux').Dispatcher;
 
 module.exports = new Dispatcher();
 
-},{"flux":4}],227:[function(require,module,exports){
+},{"flux":4}],228:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46980,7 +46998,7 @@ InitializeActions.initApp();
 Router.run(routes, function(Handler) {
 	React.render(React.createElement(Handler, null), document.getElementById('app'));
 });
-},{"./actions/initializeActions":208,"./routes":228,"react":205,"react-router":35}],228:[function(require,module,exports){
+},{"./actions/initializeActions":208,"./routes":229,"react":205,"react-router":35}],229:[function(require,module,exports){
 "use strict";
 
 var React = require('react');
@@ -46997,7 +47015,9 @@ var routes = (
     React.createElement(Route, {name: "authors", handler: require('./components/authors/authorPage')}), 
     React.createElement(Route, {name: "courses", handler: require('./components/courses/coursePage')}), 
     React.createElement(Route, {name: "addAuthor", path: "author", handler: require('./components/authors/manageAuthorPage')}), 
+    React.createElement(Route, {name: "addCourse", path: "Course", handler: require('./components/courses/manageCoursePage')}), 
     React.createElement(Route, {name: "manageAuthor", path: "author/:id", handler: require('./components/authors/manageAuthorPage')}), 
+    React.createElement(Route, {name: "manageCourse", path: "course/:id", handler: require('./components/courses/manageCoursePage')}), 
     React.createElement(Route, {name: "about", handler: require('./components/about/aboutPage')}), 
     React.createElement(NotFoundRoute, {handler: require('./components/notFoundPage')}), 
     React.createElement(Redirect, {from: "about-us", to: "about"}), 
@@ -47008,7 +47028,7 @@ var routes = (
 
 module.exports = routes;
 
-},{"./components/about/aboutPage":213,"./components/app":214,"./components/authors/authorPage":217,"./components/authors/manageAuthorPage":218,"./components/courses/coursePage":222,"./components/homePage":223,"./components/notFoundPage":224,"react":205,"react-router":35}],229:[function(require,module,exports){
+},{"./components/about/aboutPage":213,"./components/app":214,"./components/authors/authorPage":217,"./components/authors/manageAuthorPage":218,"./components/courses/coursePage":222,"./components/courses/manageCoursePage":223,"./components/homePage":224,"./components/notFoundPage":225,"react":205,"react-router":35}],230:[function(require,module,exports){
 "use strict";
 
 var Dispatcher = require('../dispatcher/appDispatcher');
@@ -47071,4 +47091,4 @@ Dispatcher.register(function(action) {
 
 module.exports = AuthorStore;
 
-},{"../constants/actionTypes":225,"../dispatcher/appDispatcher":226,"events":2,"lodash":8,"object-assign":9}]},{},[227]);
+},{"../constants/actionTypes":226,"../dispatcher/appDispatcher":227,"events":2,"lodash":8,"object-assign":9}]},{},[228]);
