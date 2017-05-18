@@ -17,6 +17,16 @@ var CourseForm = React.createClass({
 					value="" />
 				<br/>
 
+				<label htmlFor = "CourseAuthor">Author</label>
+				<div className = "dropdown">
+				<button className = "form-control dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown">
+					</button>
+				<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+					<a className="dropdown-item" href="#">Mark Tarrant</a>
+					</div>
+				</div>	
+				<br/>
+
 				<label htmlFor="CourseCategory">Course Category</label>
 				<input type="text"
 					title="courseCategory"

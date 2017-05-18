@@ -46834,6 +46834,16 @@ var CourseForm = React.createClass({displayName: "CourseForm",
 					value: ""}), 
 				React.createElement("br", null), 
 
+				React.createElement("label", {htmlFor: "CourseAuthor"}, "Author"), 
+				React.createElement("div", {className: "dropdown"}, 
+				React.createElement("button", {className: "form-control dropdown-toggle", type: "button", id: "dropdownMenuButton", "data-toggle": "dropdown"}
+					), 
+				React.createElement("div", {className: "dropdown-menu", "aria-labelledby": "dropdownMenuButton"}, 
+					React.createElement("a", {className: "dropdown-item", href: "#"}, "Mark Tarrant")
+					)
+				), 	
+				React.createElement("br", null), 
+
 				React.createElement("label", {htmlFor: "CourseCategory"}, "Course Category"), 
 				React.createElement("input", {type: "text", 
 					title: "courseCategory", 
